@@ -17,8 +17,9 @@ export const Route = createFileRoute("/auth/sign-up")({
 });
 
 function RouteComponent() {
+  // todo integrate form with tanstack form, handle submit to backend
   return (
-    <div className="w-full h-full p-4 sm:p-8 flex flex-col gap-2 sm:gap-4 justify-center items-center">
+    <>
       <Card className="w-96">
         <CardHeader>
           <CardTitle>Sign Up</CardTitle>
@@ -65,6 +66,6 @@ function RouteComponent() {
       <CustomLink customtype="link" to="/">
         Back to Home
       </CustomLink>
-    </div>
+    </>
   );
 }
