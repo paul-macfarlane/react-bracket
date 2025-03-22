@@ -12,7 +12,9 @@ A Node, TypeScript, and Express based API for React Bracket.
 npm install
 ```
 
-3. Run the API:
+3. Run the Turso db:
+
+4. Run the API:
 
 ```bash
 npm run dev
