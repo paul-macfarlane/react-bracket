@@ -13,7 +13,7 @@ function Index() {
       <p className="text-lg">
         A March Madness Bracket App built with React and TanStack Router!
       </p>
-      <CustomLink customtype="button" to="/auth">
+      <CustomLink customtype="button" to="/auth/sign-in">
         <LogIn className="w-4 h-4" /> Login
       </CustomLink>
     </div>

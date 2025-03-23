@@ -9,7 +9,11 @@ Frontend for React Bracket.
    ```sh
    npm install
    ```
-3. Run the frontend:
+3. Copy the .env.example file to .env:
+   ```sh
+   cp .env.example .env
+   ```
+4. Run the frontend:
    ```sh
    npm run dev
    ```

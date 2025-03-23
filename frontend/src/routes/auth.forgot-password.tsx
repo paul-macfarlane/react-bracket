@@ -38,7 +38,7 @@ function RouteComponent() {
         </CardContent>
       </Card>
 
-      <CustomLink customtype="link" to="/auth">
+      <CustomLink customtype="link" to="/auth/sign-in">
         Back to Login
       </CustomLink>
     </>

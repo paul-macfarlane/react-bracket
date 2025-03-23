@@ -12,12 +12,28 @@ A Node, TypeScript, and Express based API for React Bracket.
 npm install
 ```
 
-3. Run the Turso db:
+3. Copy the `.env.example` file to `.env`:
 
-4. Run the API:
+```bash
+cp .env.example .env
+```
+
+4. Run the Turso db:
+
+```bash
+npm run db
+```
+
+5. In a new terminal tab, run db migrations to setup the database:
+
+```bash
+npm run migrate
+```
+
+6. Run the API:
 
 ```bash
 npm run dev
 ```
 
-4. Access the API at `http://localhost:3000`
+7. Access the API at `http://localhost:3000`
