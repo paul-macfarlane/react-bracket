@@ -17,6 +17,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as AppIndexImport } from './routes/app.index'
 import { Route as AuthSignUpImport } from './routes/auth.sign-up'
 import { Route as AuthSignInImport } from './routes/auth.sign-in'
+import { Route as AuthResetPasswordImport } from './routes/auth.reset-password'
 import { Route as AuthForgotPasswordImport } from './routes/auth.forgot-password'
 
 // Create/Update Routes
@@ -54,6 +55,12 @@ const AuthSignUpRoute = AuthSignUpImport.update({
 const AuthSignInRoute = AuthSignInImport.update({
   id: '/sign-in',
   path: '/sign-in',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthResetPasswordRoute = AuthResetPasswordImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -95,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordImport
       parentRoute: typeof AuthImport
     }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordImport
+      parentRoute: typeof AuthImport
+    }
     '/auth/sign-in': {
       id: '/auth/sign-in'
       path: '/sign-in'
@@ -133,12 +147,14 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface AuthRouteChildren {
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSignInRoute: typeof AuthSignInRoute
   AuthSignUpRoute: typeof AuthSignUpRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
 }
@@ -150,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app/': typeof AppIndexRoute
@@ -159,6 +176,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app': typeof AppIndexRoute
@@ -170,6 +188,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app/': typeof AppIndexRoute
@@ -182,6 +201,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/auth'
     | '/auth/forgot-password'
+    | '/auth/reset-password'
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app/'
@@ -190,6 +210,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/auth/forgot-password'
+    | '/auth/reset-password'
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app'
@@ -199,6 +220,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/auth'
     | '/auth/forgot-password'
+    | '/auth/reset-password'
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app/'
@@ -245,12 +267,17 @@ export const routeTree = rootRoute
       "filePath": "auth.tsx",
       "children": [
         "/auth/forgot-password",
+        "/auth/reset-password",
         "/auth/sign-in",
         "/auth/sign-up"
       ]
     },
     "/auth/forgot-password": {
       "filePath": "auth.forgot-password.tsx",
+      "parent": "/auth"
+    },
+    "/auth/reset-password": {
+      "filePath": "auth.reset-password.tsx",
       "parent": "/auth"
     },
     "/auth/sign-in": {

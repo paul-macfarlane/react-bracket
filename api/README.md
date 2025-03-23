@@ -18,6 +18,8 @@ npm install
 cp .env.example .env
 ```
 
+Replace the values in the `.env` file with your own values.
+
 4. Run the Turso db:
 
 ```bash

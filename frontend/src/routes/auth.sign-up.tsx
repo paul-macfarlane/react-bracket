@@ -19,14 +19,15 @@ export const Route = createFileRoute("/auth/sign-up")({
 
 const signUpSchema = z
   .object({
-    firstName: z.string().min(1, "Required"),
-    lastName: z.string().min(1, "Required"),
-    email: z.string().email("Must be a valid email"),
+    firstName: z.string().trim().min(1, "Required"),
+    lastName: z.string().trim().min(1, "Required"),
+    email: z.string().trim().email("Must be a valid email"),
     password: z
       .string()
+      .trim()
       .min(8, "Must be at least 8 characters")
       .max(32, "Must be at most 32 characters"),
-    confirmPassword: z.string(),
+    confirmPassword: z.string().trim(),
   })
   .refine((val) => val.password === val.confirmPassword, {
     message: "Passwords must match.",

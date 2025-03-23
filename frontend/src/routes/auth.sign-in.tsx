@@ -18,8 +18,8 @@ export const Route = createFileRoute("/auth/sign-in")({
 });
 
 const signInSchema = z.object({
-  email: z.string().email("Must be a valid email"),
-  password: z.string().min(1, "Required"),
+  email: z.string().trim().email("Must be a valid email"),
+  password: z.string().trim().min(1, "Required"),
 });
 
 function RouteComponent() {
