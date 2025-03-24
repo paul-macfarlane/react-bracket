@@ -19,6 +19,10 @@ import { Route as AuthSignUpImport } from './routes/auth.sign-up'
 import { Route as AuthSignInImport } from './routes/auth.sign-in'
 import { Route as AuthResetPasswordImport } from './routes/auth.reset-password'
 import { Route as AuthForgotPasswordImport } from './routes/auth.forgot-password'
+import { Route as AppStandingsImport } from './routes/app.standings'
+import { Route as AppSettingsImport } from './routes/app.settings'
+import { Route as AppMyBracketsImport } from './routes/app.my-brackets'
+import { Route as AppGroupsImport } from './routes/app.groups'
 
 // Create/Update Routes
 
@@ -70,6 +74,30 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const AppStandingsRoute = AppStandingsImport.update({
+  id: '/standings',
+  path: '/standings',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppSettingsRoute = AppSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppMyBracketsRoute = AppMyBracketsImport.update({
+  id: '/my-brackets',
+  path: '/my-brackets',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppGroupsRoute = AppGroupsImport.update({
+  id: '/groups',
+  path: '/groups',
+  getParentRoute: () => AppRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -94,6 +122,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth'
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
+    }
+    '/app/groups': {
+      id: '/app/groups'
+      path: '/groups'
+      fullPath: '/app/groups'
+      preLoaderRoute: typeof AppGroupsImport
+      parentRoute: typeof AppImport
+    }
+    '/app/my-brackets': {
+      id: '/app/my-brackets'
+      path: '/my-brackets'
+      fullPath: '/app/my-brackets'
+      preLoaderRoute: typeof AppMyBracketsImport
+      parentRoute: typeof AppImport
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsImport
+      parentRoute: typeof AppImport
+    }
+    '/app/standings': {
+      id: '/app/standings'
+      path: '/standings'
+      fullPath: '/app/standings'
+      preLoaderRoute: typeof AppStandingsImport
+      parentRoute: typeof AppImport
     }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
@@ -136,10 +192,18 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AppRouteChildren {
+  AppGroupsRoute: typeof AppGroupsRoute
+  AppMyBracketsRoute: typeof AppMyBracketsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppStandingsRoute: typeof AppStandingsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppGroupsRoute: AppGroupsRoute,
+  AppMyBracketsRoute: AppMyBracketsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppStandingsRoute: AppStandingsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
@@ -165,6 +229,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
+  '/app/groups': typeof AppGroupsRoute
+  '/app/my-brackets': typeof AppMyBracketsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/standings': typeof AppStandingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
@@ -175,6 +243,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
+  '/app/groups': typeof AppGroupsRoute
+  '/app/my-brackets': typeof AppMyBracketsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/standings': typeof AppStandingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
@@ -187,6 +259,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
+  '/app/groups': typeof AppGroupsRoute
+  '/app/my-brackets': typeof AppMyBracketsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/standings': typeof AppStandingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/sign-in': typeof AuthSignInRoute
@@ -200,6 +276,10 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/auth'
+    | '/app/groups'
+    | '/app/my-brackets'
+    | '/app/settings'
+    | '/app/standings'
     | '/auth/forgot-password'
     | '/auth/reset-password'
     | '/auth/sign-in'
@@ -209,6 +289,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/app/groups'
+    | '/app/my-brackets'
+    | '/app/settings'
+    | '/app/standings'
     | '/auth/forgot-password'
     | '/auth/reset-password'
     | '/auth/sign-in'
@@ -219,6 +303,10 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/auth'
+    | '/app/groups'
+    | '/app/my-brackets'
+    | '/app/settings'
+    | '/app/standings'
     | '/auth/forgot-password'
     | '/auth/reset-password'
     | '/auth/sign-in'
@@ -260,6 +348,10 @@ export const routeTree = rootRoute
     "/app": {
       "filePath": "app.tsx",
       "children": [
+        "/app/groups",
+        "/app/my-brackets",
+        "/app/settings",
+        "/app/standings",
         "/app/"
       ]
     },
@@ -271,6 +363,22 @@ export const routeTree = rootRoute
         "/auth/sign-in",
         "/auth/sign-up"
       ]
+    },
+    "/app/groups": {
+      "filePath": "app.groups.tsx",
+      "parent": "/app"
+    },
+    "/app/my-brackets": {
+      "filePath": "app.my-brackets.tsx",
+      "parent": "/app"
+    },
+    "/app/settings": {
+      "filePath": "app.settings.tsx",
+      "parent": "/app"
+    },
+    "/app/standings": {
+      "filePath": "app.standings.tsx",
+      "parent": "/app"
     },
     "/auth/forgot-password": {
       "filePath": "auth.forgot-password.tsx",

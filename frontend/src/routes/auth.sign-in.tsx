@@ -42,6 +42,7 @@ function RouteComponent() {
 
       router.navigate({
         to: "/app",
+        reloadDocument: true,
       });
     },
     defaultValues: {

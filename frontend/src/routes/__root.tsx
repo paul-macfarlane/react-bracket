@@ -14,7 +14,7 @@ function RouteComponent() {
   return (
     <>
       <Outlet />
-      <TanStackRouterDevtools />
+      <TanStackRouterDevtools position="bottom-right" />
     </>
   );
 }
